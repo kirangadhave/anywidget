@@ -372,6 +372,10 @@ function render({ model, el }: RenderProps<WidgetModel>) {
 export default { render };
 `;
 
+function css_declaration() {
+	return `declare module "*.css";\n`;
+}
+
 function get_tsconfig() {
 	return json_dumps({
 		include: ["js"],
@@ -414,6 +418,7 @@ const bundled_templates = {
 		files: [
 			{ path: "js/widget.tsx", render: widget_react_ts },
 			{ path: "js/widget.css", render: styles },
+			{ path: "js/css.d.ts", render: css_declaration },
 			{ path: "tsconfig.json", render: get_tsconfig },
 		],
 		dependencies: ["@anywidget/react", "react", "react-dom"],
@@ -433,6 +438,7 @@ const bundled_templates = {
 		files: [
 			{ path: "js/widget.ts", render: widget_vanilla_ts },
 			{ path: "js/widget.css", render: styles },
+			{ path: "js/css.d.ts", render: css_declaration },
 			{ path: "tsconfig.json", render: get_tsconfig },
 		],
 		dependencies: [],
